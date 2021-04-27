@@ -15,21 +15,21 @@ class DataParser:
         self.json_threadData = json.load(json_threadData)
 
         if(self.bool_debugMode):
-            writeLog('=========loadFromJson=========')     
-            writeLog('Input name:')
-            writeLog('json_threadData')
-            writeLog('Input type:')
-            writeLog(type(json_threadData))
-            writeLog('Input value:')
-            writeLog(json_threadData)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('json_threadData')
-            writeLog('Output type:')
-            writeLog(type(self.json_threadData))
-            writeLog('Output value:')
-            writeLog(self.json_threadData)
-            writeLog('=========loadFromJson=========')
+            self.writeLog('=========loadFromJson=========')     
+            self.writeLog('Input name:')
+            self.writeLog('json_threadData')
+            self.writeLog('Input type:')
+            self.writeLog(type(json_threadData))
+            self.writeLog('Input value:')
+            self.writeLog(json_threadData)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('json_threadData')
+            self.writeLog('Output type:')
+            self.writeLog(type(self.json_threadData))
+            self.writeLog('Output value:')
+            self.writeLog(self.json_threadData)
+            self.writeLog('=========loadFromJson=========')
 
         pass
 
@@ -45,21 +45,21 @@ class DataParser:
             print('=========loadFromFile=========')
 
         if(self.bool_debugMode):
-            writeLog('=========loadFromFile=========')     
-            writeLog('Input name:')
-            writeLog('json_threadData')
-            writeLog('Input type:')
-            writeLog(type(json_threadData))
-            writeLog('Input value:')
-            writeLog(json_threadData)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('json_threadData')
-            writeLog('Output type:')
-            writeLog(type(self.json_threadData))
-            writeLog('Output value:')
-            writeLog(self.json_threadData)
-            writeLog('=========loadFromFile=========')
+            self.writeLog('=========loadFromFile=========')     
+            self.writeLog('Input name:')
+            self.writeLog('json_threadData')
+            self.writeLog('Input type:')
+            self.writeLog(type(json_threadData))
+            self.writeLog('Input value:')
+            self.writeLog(json_threadData)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('json_threadData')
+            self.writeLog('Output type:')
+            self.writeLog(type(self.json_threadData))
+            self.writeLog('Output value:')
+            self.writeLog(self.json_threadData)
+            self.writeLog('=========loadFromFile=========')
 
         pass
 
@@ -73,21 +73,21 @@ class DataParser:
             print('=========loadFromFile=========')
 
         if(self.bool_debugMode):
-            writeLog('=========loadFromStream=========')     
-            writeLog('Input name:')
-            writeLog('json_threadData')
-            writeLog('Input type:')
-            writeLog(type(json_threadData))
-            writeLog('Input value:')
-            writeLog(json_threadData)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('json_threadData')
-            writeLog('Output type:')
-            writeLog(type(self.json_threadData))
-            writeLog('Output value:')
-            writeLog(self.json_threadData)
-            writeLog('=========loadFromStream=========')
+            self.writeLog('=========loadFromStream=========')     
+            self.writeLog('Input name:')
+            self.writeLog('json_threadData')
+            self.writeLog('Input type:')
+            self.writeLog(type(json_threadData))
+            self.writeLog('Input value:')
+            self.writeLog(json_threadData)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('json_threadData')
+            self.writeLog('Output type:')
+            self.writeLog(type(self.json_threadData))
+            self.writeLog('Output value:')
+            self.writeLog(self.json_threadData)
+            self.writeLog('=========loadFromStream=========')
 
         pass
 
@@ -102,17 +102,17 @@ class DataParser:
 
         except:
             print('Invalid input type')
-            writeLog('Invalid input type')
+            self.writeLog('Invalid input type')
         
         if(self.bool_debugMode):
-            writeLog('=========feedData=========')     
-            writeLog('Input name:')
-            writeLog('json_threadData')
-            writeLog('Input type:')
-            writeLog(type(json_threadData))
-            writeLog('Input value:')
-            writeLog(json_threadData)
-            writeLog('=========feedData=========')
+            self.writeLog('=========feedData=========')     
+            self.writeLog('Input name:')
+            self.writeLog('json_threadData')
+            self.writeLog('Input type:')
+            self.writeLog(type(json_threadData))
+            self.writeLog('Input value:')
+            self.writeLog(json_threadData)
+            self.writeLog('=========feedData=========')
         
         pass
             
@@ -120,7 +120,7 @@ class DataParser:
         try:
             str_filePath = 'log/'+str(date.today())+'.log'
             fs_logStream = open(str_filePath,'a')
-            str_date = '['+str(date.today())+'] '
+            str_date = '['+str(date.today())+'][DataParser.py] '
             fs_logStream.write(str_date+str(str_logString)+'\n')
             fs_logStream.close()
 

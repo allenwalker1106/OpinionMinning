@@ -8,6 +8,7 @@ import nltk
 import io
 
 class TextProcess:
+
     def __init__(self,bool_debugMode = False):
         self.bool_debugMode = bool_debugMode
         self.c_stemmer = PorterStemmer()
@@ -20,21 +21,21 @@ class TextProcess:
         str_urlClear= re.sub(r'http\S+',' ',str_line)
 
         if(self.bool_debugMode):
-            writeLog('=========cleanURL=========') 
-            writeLog('Input name:')
-            writeLog('str_line')
-            writeLog('Input type:')
-            writeLog(type(str_line))
-            writeLog('Input value:')
-            writeLog(str_line)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('str_urlClear')
-            writeLog('Output type:')
-            writeLog(type(str_urlClear))
-            writeLog('Output value:')
-            writeLog(str_urlClear)
-            writeLog('=========cleanURL=========')  
+            self.writeLog('=========cleanURL=========') 
+            self.writeLog('Input name:')
+            self.writeLog('str_line')
+            self.writeLog('Input type:')
+            self.writeLog(type(str_line))
+            self.writeLog('Input value:')
+            self.writeLog(str_line)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('str_urlClear')
+            self.writeLog('Output type:')
+            self.writeLog(type(str_urlClear))
+            self.writeLog('Output value:')
+            self.writeLog(str_urlClear)
+            self.writeLog('=========cleanURL=========')  
 
         return str_urlClear
         pass
@@ -43,21 +44,21 @@ class TextProcess:
         str_symbolClear= re.sub(r'[^a-zA-Z]',' ',str_line)
 
         if(self.bool_debugMode):
-            writeLog('=========cleanSymbol=========') 
-            writeLog('Input name:')
-            writeLog('str_line')
-            writeLog('Input type:')
-            writeLog(type(str_line))
-            writeLog('Input value:')
-            writeLog(str_line)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('str_symbolClear')
-            writeLog('Output type:')
-            writeLog(type(str_symbolClear))
-            writeLog('Output value:')
-            writeLog(str_symbolClear)
-            writeLog('=========cleanSymbol=========')  
+            self.writeLog('=========cleanSymbol=========') 
+            self.writeLog('Input name:')
+            self.writeLog('str_line')
+            self.writeLog('Input type:')
+            self.writeLog(type(str_line))
+            self.writeLog('Input value:')
+            self.writeLog(str_line)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('str_symbolClear')
+            self.writeLog('Output type:')
+            self.writeLog(type(str_symbolClear))
+            self.writeLog('Output value:')
+            self.writeLog(str_symbolClear)
+            self.writeLog('=========cleanSymbol=========')  
 
         return str_symbolClear
         pass
@@ -67,21 +68,21 @@ class TextProcess:
 
         
         if(self.bool_debugMode):
-            writeLog('=========cleanStopWord=========') 
-            writeLog('Input name:')
-            writeLog('cleanStopWord')
-            writeLog('Input type:')
-            writeLog(type(cleanStopWord))
-            writeLog('Input value:')
-            writeLog(cleanStopWord)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('arr_clearStopwords')
-            writeLog('Output type:')
-            writeLog(type(arr_clearStopwords))
-            writeLog('Output value:')
-            writeLog(arr_clearStopwords)
-            writeLog('=========cleanStopWord=========')  
+            self.writeLog('=========cleanStopWord=========') 
+            self.writeLog('Input name:')
+            self.writeLog('cleanStopWord')
+            self.writeLog('Input type:')
+            self.writeLog(type(cleanStopWord))
+            self.writeLog('Input value:')
+            self.writeLog(cleanStopWord)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('arr_clearStopwords')
+            self.writeLog('Output type:')
+            self.writeLog(type(arr_clearStopwords))
+            self.writeLog('Output value:')
+            self.writeLog(arr_clearStopwords)
+            self.writeLog('=========cleanStopWord=========')  
 
 
         return arr_clearStopwords
@@ -90,21 +91,21 @@ class TextProcess:
         arr_token = word_tokenize(str_line)
         
         if(self.bool_debugMode):
-            writeLog('=========tokenize=========') 
-            writeLog('Input name:')
-            writeLog('str_line')
-            writeLog('Input type:')
-            writeLog(type(str_line))
-            writeLog('Input value:')
-            writeLog(str_line)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('arr_token')
-            writeLog('Output type:')
-            writeLog(type(arr_token))
-            writeLog('Output value:')
-            writeLog(arr_token)
-            writeLog('=========tokenize=========')  
+            self.writeLog('=========tokenize=========') 
+            self.writeLog('Input name:')
+            self.writeLog('str_line')
+            self.writeLog('Input type:')
+            self.writeLog(type(str_line))
+            self.writeLog('Input value:')
+            self.writeLog(str_line)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('arr_token')
+            self.writeLog('Output type:')
+            self.writeLog(type(arr_token))
+            self.writeLog('Output value:')
+            self.writeLog(arr_token)
+            self.writeLog('=========tokenize=========')  
 
 
         return arr_token
@@ -115,21 +116,21 @@ class TextProcess:
         arr_stemming = [self.c_stemmer.stem(token) for token in arr_token]
         
         if(self.bool_debugMode):
-            writeLog('=========stemming=========') 
-            writeLog('Input name:')
-            writeLog('arr_token')
-            writeLog('Input type:')
-            writeLog(type(arr_token))
-            writeLog('Input value:')
-            writeLog(arr_token)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('arr_stemming')
-            writeLog('Output type:')
-            writeLog(type(arr_stemming))
-            writeLog('Output value:')
-            writeLog(arr_stemming)
-            writeLog('=========stemming=========')  
+            self.writeLog('=========stemming=========') 
+            self.writeLog('Input name:')
+            self.writeLog('arr_token')
+            self.writeLog('Input type:')
+            self.writeLog(type(arr_token))
+            self.writeLog('Input value:')
+            self.writeLog(arr_token)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('arr_stemming')
+            self.writeLog('Output type:')
+            self.writeLog(type(arr_stemming))
+            self.writeLog('Output value:')
+            self.writeLog(arr_stemming)
+            self.writeLog('=========stemming=========')  
         
         return arr_stemming 
 
@@ -139,21 +140,21 @@ class TextProcess:
         arr_filterToken = [token for token in arr_token if len(token) > 2]
 
         if(self.bool_debugMode):
-            writeLog('=========LengthFilter=========') 
-            writeLog('Input name:')
-            writeLog('arr_token')
-            writeLog('Input type:')
-            writeLog(type(arr_token))
-            writeLog('Input value:')
-            writeLog(arr_token)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('arr_filterToken')
-            writeLog('Output type:')
-            writeLog(type(arr_filterToken))
-            writeLog('Output value:')
-            writeLog(arr_filterToken)
-            writeLog('=========LengthFilter=========')  
+            self.writeLog('=========LengthFilter=========') 
+            self.writeLog('Input name:')
+            self.writeLog('arr_token')
+            self.writeLog('Input type:')
+            self.writeLog(type(arr_token))
+            self.writeLog('Input value:')
+            self.writeLog(arr_token)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('arr_filterToken')
+            self.writeLog('Output type:')
+            self.writeLog(type(arr_filterToken))
+            self.writeLog('Output value:')
+            self.writeLog(arr_filterToken)
+            self.writeLog('=========LengthFilter=========')  
         
         return arr_filterToken
 
@@ -163,21 +164,21 @@ class TextProcess:
         arr_lemma=  [self.c_lemma.lemmatize(word=str_word,pos='v') for str_word in arr_token] 
 
         if(self.bool_debugMode):
-            writeLog('=========lemmatization=========') 
-            writeLog('Input name:')
-            writeLog('arr_token')
-            writeLog('Input type:')
-            writeLog(type(arr_token))
-            writeLog('Input value:')
-            writeLog(arr_token)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('arr_lemma')
-            writeLog('Output type:')
-            writeLog(type(arr_lemma))
-            writeLog('Output value:')
-            writeLog(arr_lemma)
-            writeLog('=========lemmatization=========')  
+            self.writeLog('=========lemmatization=========') 
+            self.writeLog('Input name:')
+            self.writeLog('arr_token')
+            self.writeLog('Input type:')
+            self.writeLog(type(arr_token))
+            self.writeLog('Input value:')
+            self.writeLog(arr_token)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('arr_lemma')
+            self.writeLog('Output type:')
+            self.writeLog(type(arr_lemma))
+            self.writeLog('Output value:')
+            self.writeLog(arr_lemma)
+            self.writeLog('=========lemmatization=========')  
         
         return arr_lemma
 
@@ -194,21 +195,21 @@ class TextProcess:
         str_textData = ' '.join(arr_token)
 
         if(self.bool_debugMode):
-            writeLog('=========processText=========') 
-            writeLog('Input name:')
-            writeLog('str_line')
-            writeLog('Input type:')
-            writeLog(type(str_line))
-            writeLog('Input value:')
-            writeLog(str_line)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('arr_lemma')
-            writeLog('Output type:')
-            writeLog(type(arr_lemma))
-            writeLog('Output value:')
-            writeLog(arr_lemma)
-            writeLog('=========processText=========')  
+            self.writeLog('=========processText=========') 
+            self.writeLog('Input name:')
+            self.writeLog('str_line')
+            self.writeLog('Input type:')
+            self.writeLog(type(str_line))
+            self.writeLog('Input value:')
+            self.writeLog(str_line)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('arr_lemma')
+            self.writeLog('Output type:')
+            self.writeLog(type(arr_lemma))
+            self.writeLog('Output value:')
+            self.writeLog(arr_lemma)
+            self.writeLog('=========processText=========')  
         
 
         return str_textData
@@ -222,21 +223,21 @@ class TextProcess:
             int_time+=12
 
         if(self.bool_debugMode):
-            writeLog('=========convertTime=========') 
-            writeLog('Input name:')
-            writeLog('str_line')
-            writeLog('Input type:')
-            writeLog(type(str_line))
-            writeLog('Input value:')
-            writeLog(str_line)
-            writeLog(' ')
-            writeLog('Output name:')
-            writeLog('int_time')
-            writeLog('Output type:')
-            writeLog(type(int_time))
-            writeLog('Output value:')
-            writeLog(int_time)
-            writeLog('=========convertTime=========')  
+            self.writeLog('=========convertTime=========') 
+            self.writeLog('Input name:')
+            self.writeLog('str_line')
+            self.writeLog('Input type:')
+            self.writeLog(type(str_line))
+            self.writeLog('Input value:')
+            self.writeLog(str_line)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('int_time')
+            self.writeLog('Output type:')
+            self.writeLog(type(int_time))
+            self.writeLog('Output value:')
+            self.writeLog(int_time)
+            self.writeLog('=========convertTime=========')  
         
         return int_time
 
@@ -246,7 +247,7 @@ class TextProcess:
         try:
             str_filePath = 'log/'+str(date.today())+'.log'
             fs_logStream = open(str_filePath,'a')
-            str_date = '['+str(date.today())+'] '
+            str_date = '['+str(date.today())+'][TextProcess.py] '
             fs_logStream.write(str_date+str(str_logString)+'\n')
             fs_logStream.close()
 
