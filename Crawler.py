@@ -1,6 +1,11 @@
 from requests.structures import CaseInsensitiveDict
+from WebParser import WebParser
+from datetime import date
+import json
 import requests
 import re
+import os
+
 class Crawler:
     def __init__(self,bool_debugMode=False):
         self.bool_debugMode = bool_debugMode
@@ -17,6 +22,8 @@ class Crawler:
         self.str_groupName = ''
         self.str_fragmentViewURL='https://groups.google.com/forum/?_escaped_fragment_=categories/'
         self.str_ggroupURL='https://groups.google.com/g/'
+        self.c_webParser = WebParser()
+        self.dict_groupData= dict()
 
         pass
 
@@ -55,7 +62,11 @@ class Crawler:
     
     def getGroupURL(self):
         return self.str_ggroupURL+self.str_groupName
-        
+
+    def getThreadURL(self,str_threadCode):
+        return self.getGroupURL()+'/c/'+str_threadCode
+        pass
+
     def crawTotalThreadNumber(self):
         self.int_totalPost = int(re.findall(r'>1.30\s+of\s+(\d+)<',requests.get(self.getGroupURL(),headers= self.strct_header).text)[0])
         
@@ -99,16 +110,94 @@ class Crawler:
             self.writeLog('Output name:')
             self.writeLog('str_threadCode')
             self.writeLog('Output type:')
-            self.writeLog(type(self.str_threadCode))
+            self.writeLog(type(str_threadCode))
             self.writeLog('Output value:')
-            self.writeLog(self.str_threadCode)
+            self.writeLog(str_threadCode)
             self.writeLog('=========crawTotalThreadNumber=========')
+
+        
+        if(self.bool_debugMode):
+            self.writeLog('=========crawThreadData=========')
+            self.writeLog('Output name: ')
+            self.writeLog('str_threadCode')
+            self.writeLog('Output type: ')
+            self.writeLog(type(str_threadCode))
+            self.writeLog('Ouput Value: ')
+            self.writeLog(str_threadCode)
+            self.writeLog('=========crawThreadData=========')
 
         return str_threadCode
 
         pass
 
+    def getRawPage(self,str_threadCode):
+        str_threadURL = self.getThreadURL(str_threadCode)
+        responese = requests.get(str_threadURL,headers=self.strct_header)
+        str_rawPageData = responese.text
+        
+        return str_rawPageData
+
+        pass
+
+    def crawThreadData(self):
+        if(self.bool_debugMode):
+            self.writeLog('=========crawThreadData=========')
+
+        for str_threadCode in self.arr_threadCode:
+            str_rawHTMLData = self.getRawPage(str_threadCode)
+            self.c_webParser.feed(str_rawHTMLData)
+            dict_threadData = self.c_webParser.toDictionary()
+            self.dict_groupData[str_threadCode] = dict_threadData
+            if(self.bool_debugMode):
+                self.writeLog('Thread Code: ')
+                self.writeLog(str_threadCode)
+                self.writeLog('Dictionary Thread Data: ')
+                self.writeLog(dict_threadData)
+                
+        if(self.bool_debugMode):
+            self.writeLog('=========crawThreadData=========')
+
+        pass
+    
+    def crawThreadData(self,str_threadCode):
+        if(self.bool_debugMode):
+        self.writeLog('=========crawThreadData=========')
+
+
+        str_rawHTMLData = self.getRawPage(str_threadCode)
+        self.c_webParser.feed(str_rawHTMLData)
+        dict_threadData = self.c_webParser.toDictionary()
+        self.dict_groupData[str_threadCode] = dict_threadData
+        if(self.bool_debugMode):
+            self.writeLog('Thread Code: ')
+            self.writeLog(str_threadCode)
+            self.writeLog('Dictionary Thread Data: ')
+            self.writeLog(dict_threadData)
+                
+        if(self.bool_debugMode):
+            self.writeLog('=========crawThreadData=========')
+
+    def exportJsonFile(self):
+        if(not os.path.exists('data/')):
+            os.mkdir('data/')
+        str_date = str(date.today())
+        str_dataPath = 'data/'+str_date+self.str_groupName+'.json'
+        fs_outputFile = open(str_dataPath,'w')
+        json.dump(self.dict_groupData,fs_outputFile)
+        fs_outputFile.close()
+
+        if(self.bool_debugMode):
+            self.writeLog('=========exportJsonFile=========')
+            self.writeLog('output was saved on file:')
+            self.writeLog(str_dataPath)
+            self.writeLog('=========exportJsonFile=========')
+        pass
+
+
     def writeLog(self,str_logString):
+        if(not os.path.exists('log/')):
+            os.mkdir('log/')
+
         try:
             str_filePath = 'log/'+str(date.today())+'.log'
             fs_logStream = open(str_filePath,'a')

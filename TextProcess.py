@@ -186,12 +186,12 @@ class TextProcess:
    
     def processText(self,str_line):
         str_textData= str_line.lower()
-        str_textData = cleanURL(str_textData)
-        str_textData=cleanSymbol(str_textData)
-        arr_token=tokenize(str_textData)
-        arr_token = cleanStopWord(arr_token)
-        arr_token = lemmatization(arr_token)
-        arr_token = lengthFilter(line)
+        str_textData = self.cleanURL(str_textData)
+        str_textData= self.cleanSymbol(str_textData)
+        arr_token= self.tokenize(str_textData)
+        arr_token = self.cleanStopWord(arr_token)
+        arr_token = self.lemmatization(arr_token)
+        arr_token = self.lengthFilter(arr_token)
         str_textData = ' '.join(arr_token)
 
         if(self.bool_debugMode):
@@ -215,6 +215,36 @@ class TextProcess:
         return str_textData
 
         pass
+
+    def processData(self,dict_data):
+        dict_sampleData = dict(dict_data)
+        for key in dict_data:
+            topic = dict_data[key]['topic']
+            initializeDate = dict_data[key]['initializeDate']
+            timeStamp = dict_data[key]['timeStamp']
+            content = dict_data[key]['content']
+            str_combineText = topic + ' '.join(content)
+            str_processText = self.processText(str_combineText)
+            dict_sampleData[key]['content']=str_processText
+        if(self.bool_debugMode):
+            self.writeLog('=========processData=========') 
+            self.writeLog('Input name:')
+            self.writeLog('dict_data')
+            self.writeLog('Input type:')
+            self.writeLog(type(dict_data))
+            self.writeLog('Input value:')
+            self.writeLog(dict_data)
+            self.writeLog(' ')
+            self.writeLog('Output name:')
+            self.writeLog('arr_lemma')
+            self.writeLog('Output type:')
+            self.writeLog(type(arr_lemma))
+            self.writeLog('Output value:')
+            self.writeLog(arr_lemma)
+            self.writeLog('=========processData=========') 
+        return dict_sampleData
+        pass
+
 
     def convertTime(self,str_line):
         arr_time=re.findall(r'(\w+)\s+(\d+),\s+(\d+),\s+(\d+):\d+:\d+\s+(\w+)',str_line)[0]

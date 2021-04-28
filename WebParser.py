@@ -3,9 +3,14 @@ import json
 import io
 import re
 
-class WebCrawler(HTMLParser):
+class WebParser(HTMLParser):
+
     def __init__(self):
         HTMLParser.__init__(self)
+        self.initialize()
+        pass
+
+    def initialize(self):
         self.int_commentSectionCounter =0
         self.bool_inCommentSection = False
 
@@ -22,6 +27,10 @@ class WebCrawler(HTMLParser):
         self.str_comment=''
         self.str_date=''
         self.str_topic=''
+
+    def feed(self,str_data):
+        self.initialize()
+        HTMLParser.feed(self,str_data)
         pass
     
     def handleStartDiv(self, arr_attribute):
@@ -72,8 +81,6 @@ class WebCrawler(HTMLParser):
         self.str_date+=str_data
         pass
 
-
-
     def handleStartTopic(self,arr_attribute):
         for attribute in arr_attribute:
             if(attribute[0]=='class' and attribute[1]=='KPwZRb'):
@@ -94,8 +101,6 @@ class WebCrawler(HTMLParser):
     def handleTopicData(self,str_data):
         self.str_topic+=str_data
         pass
-
-
 
     def handle_starttag(self,str_tag,arr_attribute):
         if(str_tag =='div'):
@@ -134,10 +139,3 @@ class WebCrawler(HTMLParser):
 
         return dict_data
 
-fs = io.open('test.txt', 'r',encoding='utf-8')
-line = fs.read()
-parser = WebCrawler()
-parser.feed(line)
-data=parser.toDictionary()
-print(data)
-fs.close()
